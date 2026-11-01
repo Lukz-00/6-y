@@ -3,99 +3,218 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
 <title>Arquivo Confidencial · 6 anos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0c0a0d;
-    --papel: #1a161b;
-    --texto: #e8e1e6;
-    --sutil: #9b8f97;
-    --vinho: #7a1e3a;
-    --verde: #7dd3a0;
-    --borda: #3a2f37;
+    --noir: #0b0b0c;
+    --carvao: #151517;
+    --cortica: #3b2e22;
+    --papel: #e6dfcc;
+    --papel-escuro: #cfc6ad;
+    --tinta: #16130f;
+    --cinza: #8d8880;
+    --vermelho: #9e1f23;
+    --amarelo: #d9c66c;
+    --verde-radar: #8fbfa0;
+    --display: "Special Elite", "Courier New", monospace;
+    --corpo: "Courier Prime", "Courier New", monospace;
   }
-  @media (prefers-color-scheme: light) {
-    :root:not([data-theme="dark"]) { --bg: #efe9e6; --papel: #faf6f4; --texto: #1d1719; --sutil: #6b5f66; --vinho: #6b1530; --verde: #2d6b4a; --borda: #d8cdd2; }
-  }
-  :root[data-theme="dark"] { --bg: #0c0a0d; --papel: #1a161b; --texto: #e8e1e6; --sutil: #9b8f97; --vinho: #7a1e3a; --verde: #7dd3a0; --borda: #3a2f37; }
   * { box-sizing: border-box; }
   html, body { overflow-x: hidden; }
-  body { margin: 0; background: var(--bg); color: var(--texto); font-family: Georgia, "Times New Roman", serif; line-height: 1.6; }
-  main { max-width: 680px; margin: 0 auto; padding: 32px 16px 48px; }
-  h1 { font-size: 1.6rem; letter-spacing: .08em; text-transform: uppercase; color: var(--verde); margin: 0 0 4px; }
-  h2 { font-size: 1.1rem; color: var(--verde); margin: 0 0 8px; }
-  .sub { color: var(--sutil); font-style: italic; margin: 0 0 24px; }
-  .card { background: var(--papel); border: 1px solid var(--borda); border-radius: 6px; padding: 20px; margin-bottom: 20px; }
-  label { display: block; margin-bottom: 8px; color: var(--sutil); }
-  input { width: 100%; padding: 12px; font: inherit; color: var(--texto); background: var(--bg); border: 1px solid var(--borda); border-radius: 4px; }
-  button { font: inherit; background: var(--vinho); color: #fff; border: 0; border-radius: 4px; cursor: pointer; padding: 12px 16px; }
-  button.linha { background: transparent; border: 1px solid var(--borda); color: var(--texto); }
-  .btn-cheio { margin-top: 12px; width: 100%; }
-  .erro { color: #ff8a9e; min-height: 1.4em; margin: 10px 0 0; }
-  .carimbo { color: var(--vinho); border: 2px solid var(--vinho); display: inline-block; padding: 2px 10px; letter-spacing: .15em; font-size: .85rem; transform: rotate(-2deg); }
-  .carta { white-space: pre-wrap; }
-  .contador { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center; }
-  .contador div { border: 1px solid var(--borda); border-radius: 4px; padding: 8px 4px; }
-  .contador b { display: block; font-size: 1.4rem; color: var(--verde); }
-  .contador span { font-size: .75rem; color: var(--sutil); text-transform: uppercase; letter-spacing: .08em; }
-  .grupo h3 { font-size: .95rem; margin: 16px 0 8px; color: var(--sutil); font-weight: normal; letter-spacing: .05em; }
-  .grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
-  .grade img, .gato img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px; border: 1px solid var(--borda); cursor: zoom-in; display: block; }
-  .gatos { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
-  .gato { background: var(--bg); border: 1px solid var(--borda); border-radius: 6px; padding: 8px; }
-  .gato .nome { font-weight: bold; margin: 8px 0 0; }
-  .gato .pessoa { color: var(--sutil); font-size: .85rem; margin: 0; }
-  .gato .sem-foto { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; color: var(--sutil); border: 1px dashed var(--borda); border-radius: 4px; font-style: italic; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--papel);
+    font-family: var(--corpo);
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(143,191,160,.06), transparent 60%),
+      radial-gradient(ellipse at 50% 120%, rgba(0,0,0,.85), transparent 70%),
+      var(--noir);
+  }
+  body::before {
+    content: "";
+    position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: .08;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  main { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 28px 16px 56px; }
+
+  /* Cabeçalho estilo jornal/arquivo */
+  .cabecalho { text-align: center; border-top: 3px double var(--papel-escuro); border-bottom: 3px double var(--papel-escuro); padding: 12px 0; margin-bottom: 22px; }
+  .cabecalho h1 { font-family: var(--display); font-weight: normal; font-size: clamp(1.6rem, 6vw, 2.4rem); letter-spacing: .12em; text-transform: uppercase; margin: 0; color: var(--papel); }
+  .cabecalho p { margin: 6px 0 0; font-style: italic; color: var(--cinza); font-size: .95rem; }
+
+  /* Papel de caso */
+  .papel {
+    position: relative;
+    background: var(--papel);
+    color: var(--tinta);
+    padding: 22px 20px;
+    margin: 0 0 26px;
+    box-shadow: 0 10px 24px rgba(0,0,0,.5), inset 0 0 40px rgba(120,90,40,.15);
+    background-image: linear-gradient(transparent 0 27px, rgba(120,100,60,.12) 27px 28px);
+    background-size: 100% 28px;
+  }
+  .papel h2 { font-family: var(--display); font-weight: normal; font-size: 1.15rem; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 14px; border-bottom: 2px solid var(--tinta); padding-bottom: 6px; }
+  .papel.inclinado-1 { transform: rotate(-.6deg); }
+  .papel.inclinado-2 { transform: rotate(.5deg); }
+
+  /* Carimbo */
+  .carimbo {
+    display: inline-block;
+    font-family: var(--display);
+    color: var(--vermelho);
+    border: 3px solid var(--vermelho);
+    padding: 4px 12px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    transform: rotate(-4deg);
+    opacity: .9;
+    font-size: .95rem;
+  }
+  .carimbo.grande { font-size: 1.3rem; padding: 8px 18px; }
+
+  /* Fita adesiva amarela */
+  .fita {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%) rotate(-2deg);
+    width: 110px; height: 26px;
+    background: rgba(217,198,108,.75);
+    box-shadow: 0 1px 2px rgba(0,0,0,.4);
+  }
+
+  /* Formulário de acesso */
+  .acesso { max-width: 460px; margin: 40px auto 0; }
+  .acesso label { display: block; font-family: var(--display); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; color: var(--tinta); }
+  .acesso input {
+    width: 100%; padding: 12px 6px; font: inherit; font-size: 1.2rem; letter-spacing: .15em;
+    color: var(--tinta); background: transparent; border: 0; border-bottom: 2px solid var(--tinta); border-radius: 0; outline: none;
+  }
+  .acesso input:focus { border-bottom-color: var(--vermelho); }
+  .acesso button {
+    margin-top: 18px; width: 100%; padding: 12px; font-family: var(--display); font-size: 1rem; letter-spacing: .15em; text-transform: uppercase;
+    background: var(--tinta); color: var(--papel); border: 0; cursor: pointer;
+  }
+  .acesso button:hover { background: var(--vermelho); }
+  .erro { color: var(--vermelho); min-height: 1.4em; margin: 12px 0 0; font-weight: bold; }
+  .dica { font-size: .85rem; color: #4a4134; margin-top: 14px; }
+
+  /* Contador de investigação */
+  .contador { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .contador div { background: var(--tinta); color: var(--amarelo); padding: 10px 4px; text-align: center; border: 2px solid var(--tinta); }
+  .contador b { display: block; font-family: var(--display); font-weight: normal; font-size: 1.8rem; letter-spacing: .04em; }
+  .contador span { font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: var(--papel-escuro); }
+
+  /* Carta datilografada */
+  .carta { white-space: pre-wrap; font-size: 1.02rem; line-height: 1.75; }
+
+  /* Mural de fotos (polaroids) */
+  .mural-grupo { margin-bottom: 26px; }
+  .aba { display: inline-block; background: var(--papel-escuro); color: var(--tinta); font-family: var(--display); font-size: .85rem; letter-spacing: .1em; text-transform: uppercase; padding: 4px 12px; margin-bottom: 14px; box-shadow: 0 2px 6px rgba(0,0,0,.4); }
+  .polaroids { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px 12px; }
+  .polaroid {
+    background: #f4f0e4; padding: 8px 8px 22px; box-shadow: 0 6px 14px rgba(0,0,0,.55);
+    transform: rotate(var(--giro, 0deg)); transition: transform .2s ease; cursor: zoom-in;
+  }
+  .polaroid:nth-child(3n+1) { --giro: -2deg; }
+  .polaroid:nth-child(3n+2) { --giro: 1.5deg; }
+  .polaroid:nth-child(3n) { --giro: -1deg; }
+  .polaroid:hover { transform: rotate(0deg) scale(1.04); }
+  .polaroid img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; filter: grayscale(.25) contrast(1.05); }
+  .polaroid .legenda { font-family: var(--display); color: var(--tinta); font-size: .7rem; margin-top: 6px; text-align: center; letter-spacing: .05em; }
+
+  /* Bestiário de espécimes (gatos) */
+  .espécimes { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 18px; }
+  .ficha { background: var(--papel); color: var(--tinta); padding: 12px; position: relative; box-shadow: 0 8px 18px rgba(0,0,0,.55); }
+  .ficha .codigo { font-family: var(--display); font-size: .75rem; letter-spacing: .15em; color: var(--vermelho); }
+  .ficha .foto { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; margin: 8px 0; filter: grayscale(.35) contrast(1.1); border: 1px solid var(--tinta); cursor: zoom-in; }
+  .ficha .sem-foto { width: 100%; aspect-ratio: 1; margin: 8px 0; border: 2px dashed var(--tinta); display: flex; align-items: center; justify-content: center; font-family: var(--display); color: var(--cinza); }
+  .ficha h3 { font-family: var(--display); font-weight: normal; font-size: 1.4rem; text-transform: uppercase; letter-spacing: .08em; margin: 4px 0 2px; }
+  .ficha .classe { font-weight: bold; font-size: .85rem; margin: 0; }
+  .ficha .nota { font-size: .85rem; margin: 4px 0 0; font-style: italic; color: #3d342a; }
+  .ficha .com { font-size: .85rem; margin: 6px 0 0; border-top: 1px dashed var(--tinta); padding-top: 6px; }
+  .ficha .carimbo { position: absolute; top: 40px; right: 6px; font-size: .65rem; padding: 2px 6px; border-width: 2px; }
+
+  /* Linha do tempo como lista de casos */
+  .casos { list-style: none; padding: 0; margin: 0; }
+  .casos li { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px dashed var(--tinta); padding: 8px 0; }
+  .casos .num { font-family: var(--display); }
+  .casos .qtd { color: #4a4134; font-size: .9rem; }
+
+  /* Visualizador */
+  #visor { position: fixed; inset: 0; background: rgba(0,0,0,.94); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 10; }
+  #visor img { max-width: 100%; max-height: 82vh; border: 10px solid #f4f0e4; box-shadow: 0 0 40px rgba(0,0,0,.8); }
+  #visor button { position: absolute; top: 14px; right: 14px; font-family: var(--display); letter-spacing: .1em; background: var(--papel); color: var(--tinta); border: 0; padding: 8px 14px; cursor: pointer; }
+
   .oculto { display: none !important; }
-  #visor { position: fixed; inset: 0; background: rgba(0,0,0,.92); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 10; }
-  #visor img { max-width: 100%; max-height: 80vh; border-radius: 4px; }
-  #visor button { position: absolute; top: 12px; right: 12px; }
-  .rodape { color: var(--sutil); font-size: .8rem; text-align: center; margin-top: 32px; }
+  .rodape { text-align: center; color: var(--cinza); font-family: var(--display); font-size: .8rem; letter-spacing: .15em; text-transform: uppercase; margin-top: 36px; }
+
+  @media (max-width: 480px) {
+    main { padding: 20px 14px 48px; }
+    .papel { padding: 20px 16px; }
+    .contador b { font-size: 1.4rem; }
+  }
 </style>
 </head>
 <body>
 <main>
-  <h1>Arquivo Confidencial</h1>
-  <p class="sub">Seis anos. Um caso que nunca foi resolvido.</p>
+  <header class="cabecalho">
+    <h1>Arquivo Confidencial</h1>
+    <p>Seis anos. Um caso que nunca foi resolvido.</p>
+  </header>
 
-  <section id="bloqueio" class="card">
-    <span class="carimbo">CONFIDENCIAL</span>
-    <p>Para abrir o arquivo, informe a data de início do caso.</p>
-    <form id="form">
-      <label for="senha">Data de início do namoro (DD/MM/AAAA)</label>
-      <input id="senha" name="senha" inputmode="numeric" autocomplete="off" placeholder="DD/MM/AAAA" required>
-      <button type="submit" class="btn-cheio">Abrir arquivo</button>
-      <p id="erro" class="erro" role="alert"></p>
-    </form>
+  <section id="bloqueio">
+    <div class="papel inclinado-1 acesso">
+      <span class="fita" aria-hidden="true"></span>
+      <div style="text-align:center; margin-bottom: 14px;"><span class="carimbo grande">Confidencial</span></div>
+      <p style="margin: 0 0 18px;">Para abrir o arquivo, informe a data de início do caso.</p>
+      <form id="form" autocomplete="off">
+        <label for="senha">Data de início (DD/MM/AAAA)</label>
+        <input id="senha" name="senha" inputmode="numeric" placeholder="__/__/____" required>
+        <button type="submit">Abrir arquivo</button>
+        <p id="erro" class="erro" role="alert"></p>
+      </form>
+      <p class="dica">Acesso restrito ao casal.</p>
+    </div>
   </section>
 
   <section id="conteudo" class="oculto">
-    <div class="card">
-      <h2>Tempo juntos</h2>
+    <div class="papel inclinado-2">
+      <span class="fita" aria-hidden="true"></span>
+      <h2>Tempo de investigação</h2>
       <div id="contador" class="contador"></div>
     </div>
 
-    <div class="card">
-      <h2>Carta</h2>
+    <div class="papel inclinado-1">
+      <span class="fita" aria-hidden="true"></span>
+      <h2>Relatório pessoal</h2>
+      <div style="text-align:right; margin-bottom: 10px;"><span class="carimbo">Confidencial</span></div>
       <div id="carta" class="carta"></div>
     </div>
 
-    <div class="card">
-      <h2>Recordações</h2>
+    <div class="papel">
+      <h2>Linha do tempo · casos</h2>
+      <ul id="casos" class="casos"></ul>
+    </div>
+
+    <section style="margin-bottom: 30px;">
+      <h2 style="font-family: var(--display); font-weight: normal; text-transform: uppercase; letter-spacing: .1em; color: var(--papel); border-bottom: 1px solid var(--cinza); padding-bottom: 6px;">Provas fotográficas</h2>
       <div id="fotos"></div>
-    </div>
+    </section>
 
-    <div class="card">
-      <h2>Equipe de investigação felina</h2>
-      <div id="gatos" class="gatos"></div>
-    </div>
+    <section>
+      <h2 style="font-family: var(--display); font-weight: normal; text-transform: uppercase; letter-spacing: .1em; color: var(--papel); border-bottom: 1px solid var(--cinza); padding-bottom: 6px;">Bestiário · espécimes felinos</h2>
+      <div id="gatos" class="espécimes"></div>
+    </section>
 
-    <p class="rodape">Arquivo aberto. Não há conclusão oficial.</p>
+    <p class="rodape">Arquivo aberto · Não há conclusão oficial</p>
   </section>
 </main>
 
 <div id="visor" class="oculto" role="dialog" aria-modal="true">
-  <button type="button" class="linha" id="fechar" aria-label="Fechar">Fechar</button>
+  <button type="button" id="fechar" aria-label="Fechar">Fechar</button>
   <img id="visor-img" alt="">
 </div>
 
@@ -103,11 +222,11 @@
 (() => {
   "use strict";
 
-  const INICIO = new Date(2020, 9, 31); // 31/10/2020
+  const INICIO = new Date(2020, 9, 31); // 31/10/2020, início do namoro
   const $ = (id) => document.getElementById(id);
   const base64ParaBytes = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
 
-  function criarElemento(tag, attrs, texto) {
+  function criar(tag, attrs, texto) {
     const el = document.createElement(tag);
     if (attrs) for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
     if (texto !== undefined) el.textContent = texto;
@@ -148,13 +267,10 @@
     }
     if (meses < 0) { anos -= 1; meses += 12; }
     // O inicio e meia-noite, entao horas/minutos/segundos sao a hora atual do dia.
-    const segundosDoDia = agora.getHours() * 3600 + agora.getMinutes() * 60 + agora.getSeconds();
-    const h = Math.floor(segundosDoDia / 3600);
-    const m = Math.floor((segundosDoDia % 3600) / 60);
-    const s = segundosDoDia % 60;
+    const seg = agora.getHours() * 3600 + agora.getMinutes() * 60 + agora.getSeconds();
     return [
       ["anos", anos], ["meses", meses], ["dias", dias],
-      ["horas", h], ["min", m], ["seg", s],
+      ["horas", Math.floor(seg / 3600)], ["min", Math.floor((seg % 3600) / 60)], ["seg", seg % 60],
     ];
   }
 
@@ -162,10 +278,10 @@
     const area = $("contador");
     area.replaceChildren();
     for (const [rotulo, valor] of tempoJuntos()) {
-      const box = criarElemento("div");
-      box.appendChild(criarElemento("b", null, String(valor)));
-      box.appendChild(criarElemento("span", null, rotulo));
-      area.appendChild(box);
+      const caixa = criar("div");
+      caixa.appendChild(criar("b", null, String(valor).padStart(2, "0")));
+      caixa.appendChild(criar("span", null, rotulo));
+      area.appendChild(caixa);
     }
   }
 
@@ -173,6 +289,7 @@
     $("visor-img").src = src;
     $("visor-img").alt = alt || "";
     $("visor").classList.remove("oculto");
+    $("fechar").focus();
   }
 
   function fecharVisor() {
@@ -180,23 +297,39 @@
     $("visor-img").src = "";
   }
 
+  function renderizarCasos(casos) {
+    const lista = $("casos");
+    lista.replaceChildren();
+    for (const c of casos) {
+      const li = criar("li");
+      li.appendChild(criar("span", { class: "num" }, `Caso ${c.caso} · ${c.ano} — ${c.titulo}`));
+      li.appendChild(criar("span", { class: "qtd" }, `${c.fotos.length} provas`));
+      lista.appendChild(li);
+    }
+  }
+
   function renderizarFotos(fotos) {
     const area = $("fotos");
     area.replaceChildren();
     const grupos = new Map();
     for (const f of fotos) {
-      const chave = `${f.caso} · ${f.ano}`;
+      const chave = `Caso ${f.caso} · ${f.ano}`;
       if (!grupos.has(chave)) grupos.set(chave, []);
       grupos.get(chave).push(f);
     }
     for (const [titulo, lista] of grupos) {
-      const grupo = criarElemento("div", { class: "grupo" });
-      grupo.appendChild(criarElemento("h3", null, `Caso ${titulo}`));
-      const grade = criarElemento("div", { class: "grade" });
+      const grupo = criar("div", { class: "mural-grupo" });
+      grupo.appendChild(criar("span", { class: "aba" }, titulo));
+      const grade = criar("div", { class: "polaroids" });
       for (const f of lista) {
-        const img = criarElemento("img", { src: f.src, alt: `Foto ${titulo}`, loading: "lazy" });
-        img.addEventListener("click", () => abrirVisor(f.src, `Foto ${titulo}`));
-        grade.appendChild(img);
+        const cartao = criar("figure", { class: "polaroid", role: "button", tabindex: "0" });
+        const img = criar("img", { src: f.src, alt: `Prova do ${titulo}`, loading: "lazy" });
+        cartao.appendChild(img);
+        cartao.appendChild(criar("figcaption", { class: "legenda" }, "PROVA"));
+        const abre = () => abrirVisor(f.src, `Prova do ${titulo}`);
+        cartao.addEventListener("click", abre);
+        cartao.addEventListener("keydown", (ev) => { if (ev.key === "Enter") abre(); });
+        grade.appendChild(cartao);
       }
       grupo.appendChild(grade);
       area.appendChild(grupo);
@@ -206,24 +339,30 @@
   function renderizarGatos(gatos) {
     const area = $("gatos");
     area.replaceChildren();
-    for (const g of gatos) {
-      const card = criarElemento("div", { class: "gato" });
+    gatos.forEach((g, i) => {
+      const ficha = criar("article", { class: "ficha" });
+      ficha.appendChild(criar("p", { class: "codigo" }, `ESPÉCIME Nº ${String(i + 1).padStart(2, "0")}`));
       if (g.src) {
-        const img = criarElemento("img", { src: g.src, alt: g.nome, loading: "lazy" });
+        const img = criar("img", { src: g.src, alt: g.nome, class: "foto", loading: "lazy" });
         img.addEventListener("click", () => abrirVisor(g.src, g.nome));
-        card.appendChild(img);
+        ficha.appendChild(img);
       } else {
-        card.appendChild(criarElemento("div", { class: "sem-foto" }, "sem foto"));
+        ficha.appendChild(criar("div", { class: "sem-foto" }, "SEM IMAGEM"));
       }
-      card.appendChild(criarElemento("p", { class: "nome" }, g.nome));
-      if (g.pessoa) card.appendChild(criarElemento("p", { class: "pessoa" }, `com ${g.pessoa}`));
-      if (g.legenda) card.appendChild(criarElemento("p", { class: "pessoa" }, g.legenda));
-      area.appendChild(card);
-    }
+      ficha.appendChild(criar("h3", null, g.nome));
+      if (g.classe) ficha.appendChild(criar("p", { class: "classe" }, `Classe: ${g.classe}`));
+      if (g.nota) ficha.appendChild(criar("p", { class: "nota" }, g.nota));
+      if (g.pessoa || g.legenda) {
+        const texto = g.legenda || (g.pessoa ? `com ${g.pessoa}` : "");
+        ficha.appendChild(criar("p", { class: "com" }, texto));
+      }
+      area.appendChild(ficha);
+    });
   }
 
   function mostrarConteudo(conteudo) {
     $("carta").textContent = conteudo.carta;
+    renderizarCasos(conteudo.casos || []);
     renderizarFotos(conteudo.fotos || []);
     renderizarGatos(conteudo.gatos || []);
     desenharContador();
@@ -242,7 +381,7 @@
     if (!dados) return;
     const digitos = $("senha").value.replace(/\D/g, "");
     if (digitos.length !== 8) { $("erro").textContent = "Use a data completa."; return; }
-    $("erro").textContent = "Abrindo...";
+    $("erro").textContent = "Abrindo arquivo...";
     try {
       const conteudo = await descriptografar(dados, digitos);
       mostrarConteudo(conteudo);
