@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arquivo Confidencial · 6 anos</title>
+<style>
+  :root {
+    --bg: #0c0a0d;
+    --papel: #1a161b;
+    --texto: #e8e1e6;
+    --sutil: #9b8f97;
+    --vinho: #7a1e3a;
+    --verde: #7dd3a0;
+    --borda: #3a2f37;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) { --bg: #efe9e6; --papel: #faf6f4; --texto: #1d1719; --sutil: #6b5f66; --vinho: #6b1530; --verde: #2d6b4a; --borda: #d8cdd2; }
+  }
+  :root[data-theme="dark"] { --bg: #0c0a0d; --papel: #1a161b; --texto: #e8e1e6; --sutil: #9b8f97; --vinho: #7a1e3a; --verde: #7dd3a0; --borda: #3a2f37; }
+  * { box-sizing: border-box; }
+  html, body { overflow-x: hidden; }
+  body { margin: 0; background: var(--bg); color: var(--texto); font-family: Georgia, "Times New Roman", serif; line-height: 1.6; }
+  main { max-width: 680px; margin: 0 auto; padding: 32px 16px 48px; }
+  h1 { font-size: 1.6rem; letter-spacing: .08em; text-transform: uppercase; color: var(--verde); margin: 0 0 4px; }
+  h2 { font-size: 1.1rem; color: var(--verde); margin: 0 0 8px; }
+  .sub { color: var(--sutil); font-style: italic; margin: 0 0 24px; }
+  .card { background: var(--papel); border: 1px solid var(--borda); border-radius: 6px; padding: 20px; margin-bottom: 20px; }
+  label { display: block; margin-bottom: 8px; color: var(--sutil); }
+  input { width: 100%; padding: 12px; font: inherit; color: var(--texto); background: var(--bg); border: 1px solid var(--borda); border-radius: 4px; }
+  button { font: inherit; background: var(--vinho); color: #fff; border: 0; border-radius: 4px; cursor: pointer; padding: 12px 16px; }
+  button.linha { background: transparent; border: 1px solid var(--borda); color: var(--texto); }
+  .btn-cheio { margin-top: 12px; width: 100%; }
+  .erro { color: #ff8a9e; min-height: 1.4em; margin: 10px 0 0; }
+  .carimbo { color: var(--vinho); border: 2px solid var(--vinho); display: inline-block; padding: 2px 10px; letter-spacing: .15em; font-size: .85rem; transform: rotate(-2deg); }
+  .carta { white-space: pre-wrap; }
+  .contador { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; text-align: center; }
+  .contador div { border: 1px solid var(--borda); border-radius: 4px; padding: 8px 4px; }
+  .contador b { display: block; font-size: 1.4rem; color: var(--verde); }
+  .contador span { font-size: .75rem; color: var(--sutil); text-transform: uppercase; letter-spacing: .08em; }
+  .grupo h3 { font-size: .95rem; margin: 16px 0 8px; color: var(--sutil); font-weight: normal; letter-spacing: .05em; }
+  .grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+  .grade img, .gato img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 4px; border: 1px solid var(--borda); cursor: zoom-in; display: block; }
+  .gatos { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
+  .gato { background: var(--bg); border: 1px solid var(--borda); border-radius: 6px; padding: 8px; }
+  .gato .nome { font-weight: bold; margin: 8px 0 0; }
+  .gato .pessoa { color: var(--sutil); font-size: .85rem; margin: 0; }
+  .gato .sem-foto { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; color: var(--sutil); border: 1px dashed var(--borda); border-radius: 4px; font-style: italic; }
+  .oculto { display: none !important; }
+  #visor { position: fixed; inset: 0; background: rgba(0,0,0,.92); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 10; }
+  #visor img { max-width: 100%; max-height: 80vh; border-radius: 4px; }
+  #visor button { position: absolute; top: 12px; right: 12px; }
+  .rodape { color: var(--sutil); font-size: .8rem; text-align: center; margin-top: 32px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Arquivo Confidencial</h1>
+  <p class="sub">Seis anos. Um caso que nunca foi resolvido.</p>
+
+  <section id="bloqueio" class="card">
+    <span class="carimbo">CONFIDENCIAL</span>
+    <p>Para abrir o arquivo, informe a data de início do caso.</p>
+    <form id="form">
+      <label for="senha">Data de início do namoro (DD/MM/AAAA)</label>
+      <input id="senha" name="senha" inputmode="numeric" autocomplete="off" placeholder="DD/MM/AAAA" required>
+      <button type="submit" class="btn-cheio">Abrir arquivo</button>
+      <p id="erro" class="erro" role="alert"></p>
+    </form>
+  </section>
+
+  <section id="conteudo" class="oculto">
+    <div class="card">
+      <h2>Tempo juntos</h2>
+      <div id="contador" class="contador"></div>
+    </div>
+
+    <div class="card">
+      <h2>Carta</h2>
+      <div id="carta" class="carta"></div>
+    </div>
+
+    <div class="card">
+      <h2>Recordações</h2>
+      <div id="fotos"></div>
+    </div>
+
+    <div class="card">
+      <h2>Equipe de investigação felina</h2>
+      <div id="gatos" class="gatos"></div>
+    </div>
+
+    <p class="rodape">Arquivo aberto. Não há conclusão oficial.</p>
+  </section>
+</main>
+
+<div id="visor" class="oculto" role="dialog" aria-modal="true">
+  <button type="button" class="linha" id="fechar" aria-label="Fechar">Fechar</button>
+  <img id="visor-img" alt="">
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  const INICIO = new Date(2020, 9, 31); // 31/10/2020
+  const $ = (id) => document.getElementById(id);
+  const base64ParaBytes = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+
+  function criarElemento(tag, attrs, texto) {
+    const el = document.createElement(tag);
+    if (attrs) for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+    if (texto !== undefined) el.textContent = texto;
+    return el;
+  }
+
+  async function carregarCriptografado() {
+    const resp = await fetch("conteudo.enc.json", { cache: "no-store" });
+    if (!resp.ok) throw new Error("download");
+    return resp.json();
+  }
+
+  async function descriptografar(dados, senhaDigitos) {
+    const base = await crypto.subtle.importKey(
+      "raw", new TextEncoder().encode(senhaDigitos), "PBKDF2", false, ["deriveKey"]
+    );
+    const chave = await crypto.subtle.deriveKey(
+      { name: "PBKDF2", salt: base64ParaBytes(dados.salt), iterations: dados.iter, hash: "SHA-256" },
+      base,
+      { name: "AES-GCM", length: 256 },
+      false,
+      ["decrypt"]
+    );
+    const claro = await crypto.subtle.decrypt(
+      { name: "AES-GCM", iv: base64ParaBytes(dados.iv) }, chave, base64ParaBytes(dados.ct)
+    );
+    return JSON.parse(new TextDecoder().decode(claro));
+  }
+
+  function tempoJuntos() {
+    const agora = new Date();
+    let anos = agora.getFullYear() - INICIO.getFullYear();
+    let meses = agora.getMonth() - INICIO.getMonth();
+    let dias = agora.getDate() - INICIO.getDate();
+    if (dias < 0) {
+      meses -= 1;
+      dias += new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
+    }
+    if (meses < 0) { anos -= 1; meses += 12; }
+    // O inicio e meia-noite, entao horas/minutos/segundos sao a hora atual do dia.
+    const segundosDoDia = agora.getHours() * 3600 + agora.getMinutes() * 60 + agora.getSeconds();
+    const h = Math.floor(segundosDoDia / 3600);
+    const m = Math.floor((segundosDoDia % 3600) / 60);
+    const s = segundosDoDia % 60;
+    return [
+      ["anos", anos], ["meses", meses], ["dias", dias],
+      ["horas", h], ["min", m], ["seg", s],
+    ];
+  }
+
+  function desenharContador() {
+    const area = $("contador");
+    area.replaceChildren();
+    for (const [rotulo, valor] of tempoJuntos()) {
+      const box = criarElemento("div");
+      box.appendChild(criarElemento("b", null, String(valor)));
+      box.appendChild(criarElemento("span", null, rotulo));
+      area.appendChild(box);
+    }
+  }
+
+  function abrirVisor(src, alt) {
+    $("visor-img").src = src;
+    $("visor-img").alt = alt || "";
+    $("visor").classList.remove("oculto");
+  }
+
+  function fecharVisor() {
+    $("visor").classList.add("oculto");
+    $("visor-img").src = "";
+  }
+
+  function renderizarFotos(fotos) {
+    const area = $("fotos");
+    area.replaceChildren();
+    const grupos = new Map();
+    for (const f of fotos) {
+      const chave = `${f.caso} · ${f.ano}`;
+      if (!grupos.has(chave)) grupos.set(chave, []);
+      grupos.get(chave).push(f);
+    }
+    for (const [titulo, lista] of grupos) {
+      const grupo = criarElemento("div", { class: "grupo" });
+      grupo.appendChild(criarElemento("h3", null, `Caso ${titulo}`));
+      const grade = criarElemento("div", { class: "grade" });
+      for (const f of lista) {
+        const img = criarElemento("img", { src: f.src, alt: `Foto ${titulo}`, loading: "lazy" });
+        img.addEventListener("click", () => abrirVisor(f.src, `Foto ${titulo}`));
+        grade.appendChild(img);
+      }
+      grupo.appendChild(grade);
+      area.appendChild(grupo);
+    }
+  }
+
+  function renderizarGatos(gatos) {
+    const area = $("gatos");
+    area.replaceChildren();
+    for (const g of gatos) {
+      const card = criarElemento("div", { class: "gato" });
+      if (g.src) {
+        const img = criarElemento("img", { src: g.src, alt: g.nome, loading: "lazy" });
+        img.addEventListener("click", () => abrirVisor(g.src, g.nome));
+        card.appendChild(img);
+      } else {
+        card.appendChild(criarElemento("div", { class: "sem-foto" }, "sem foto"));
+      }
+      card.appendChild(criarElemento("p", { class: "nome" }, g.nome));
+      if (g.pessoa) card.appendChild(criarElemento("p", { class: "pessoa" }, `com ${g.pessoa}`));
+      if (g.legenda) card.appendChild(criarElemento("p", { class: "pessoa" }, g.legenda));
+      area.appendChild(card);
+    }
+  }
+
+  function mostrarConteudo(conteudo) {
+    $("carta").textContent = conteudo.carta;
+    renderizarFotos(conteudo.fotos || []);
+    renderizarGatos(conteudo.gatos || []);
+    desenharContador();
+    setInterval(desenharContador, 1000);
+    $("bloqueio").classList.add("oculto");
+    $("conteudo").classList.remove("oculto");
+  }
+
+  let dados = null;
+  carregarCriptografado()
+    .then((d) => { dados = d; })
+    .catch(() => { $("erro").textContent = "Não foi possível carregar o arquivo."; });
+
+  $("form").addEventListener("submit", async (ev) => {
+    ev.preventDefault();
+    if (!dados) return;
+    const digitos = $("senha").value.replace(/\D/g, "");
+    if (digitos.length !== 8) { $("erro").textContent = "Use a data completa."; return; }
+    $("erro").textContent = "Abrindo...";
+    try {
+      const conteudo = await descriptografar(dados, digitos);
+      mostrarConteudo(conteudo);
+    } catch (e) {
+      $("erro").textContent = "Data incorreta. Tente de novo.";
+    }
+  });
+
+  $("fechar").addEventListener("click", fecharVisor);
+  $("visor").addEventListener("click", (ev) => { if (ev.target === $("visor")) fecharVisor(); });
+  document.addEventListener("keydown", (ev) => { if (ev.key === "Escape") fecharVisor(); });
+})();
+</script>
+</body>
+</html>
